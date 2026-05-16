@@ -198,7 +198,7 @@ input:focus, textarea:focus { border-bottom-color:var(--pink); }
     <div class="lock-title">VAULT</div>
     <div class="lock-sub">// end-to-end encrypted notes</div>
 
-    <div class="tabs">
+    <div class="tabs" id="tabs-row" style="display:none">
       <button class="tab-btn active" id="tab-btn-unlock" onclick="switchTab('unlock')">Unlock</button>
       <button class="tab-btn"        id="tab-btn-new"    onclick="switchTab('new')">New Vault</button>
     </div>
@@ -352,7 +352,10 @@ function lockVault() {
   masterKey = null; notes = {}; currentNoteId = null;
   document.getElementById('unlock-password').value = '';
   document.getElementById('unlock-error').style.display = 'none';
-  switchTab(localStorage.getItem(SALT_KEY) ? 'unlock' : 'new');
+  // Vault always exists at this point, just show unlock with no tabs
+  document.getElementById('tab-unlock').style.display = '';
+  document.getElementById('tab-new').style.display = 'none';
+  document.getElementById('tabs-row').style.display = 'none';
   showScreen('screen-lock');
 }
 
@@ -459,7 +462,17 @@ document.getElementById('unlock-password').addEventListener('keydown', e => {
 });
 
 // Init
-if (!localStorage.getItem(SALT_KEY)) switchTab('new');
+if (!localStorage.getItem(SALT_KEY)) {
+  // No vault yet — show only the create form, no tabs
+  document.getElementById('tab-unlock').style.display = 'none';
+  document.getElementById('tab-new').style.display = '';
+  document.getElementById('tab-btn-new').classList.add('active');
+  document.getElementById('tab-btn-unlock').classList.remove('active');
+} else {
+  // Vault exists — show only unlock, no tabs
+  document.getElementById('tab-unlock').style.display = '';
+  document.getElementById('tab-new').style.display = 'none';
+}
 </script>
 </body>
 </html>
