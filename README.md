@@ -1,4 +1,4 @@
-# Vault — Encrypted Notes App
+# Vault Encrypted Notes App
 
 A native Android wrapper for the Vault encrypted notes web app.  
 Uses AES-256-GCM encryption entirely in the browser (WebCrypto API).  
@@ -6,7 +6,7 @@ Notes are stored in the app's local storage — never sent anywhere.
 
 ---
 
-## 🛡️ Security Notes
+## Security Notes
 
 - `FLAG_SECURE` is set: screenshots and screen recording are blocked by the OS
 - No internet permission is used (the HTML is loaded from app assets)
@@ -14,7 +14,7 @@ Notes are stored in the app's local storage — never sent anywhere.
 
 ---
 
-## 🔨 How to Build
+## How to Build
 
 ### Option A — Android Studio (Easiest)
 
@@ -48,7 +48,7 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 VaultApp/
@@ -74,3 +74,5 @@ VaultApp/
 
 - Android 8.0 (API 26) or higher
 - The WebView component (standard on all modern Android)
+
+## !! Development on this project is paused so far !!
